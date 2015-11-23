@@ -14,5 +14,5 @@
 ## to build ios
     $ ionic build
 
-## to run ios simualtor
+## to run ios simulator
     $ ionic emulate ios
