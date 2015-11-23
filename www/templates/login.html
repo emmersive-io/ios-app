@@ -1,0 +1,20 @@
+<ion-view title="Login">
+  <ion-content padding="'true'" class="has-header">
+    <form class="list">
+      <ion-list>
+        <label class="item item-input">
+          <span class="input-label">Email Address</span>
+          <input type="text" placeholder="" ng-model="user.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="" ng-model="user.password">
+        </label>
+      </ion-list>
+      <div class="spacer" style="height: 40px;"></div>
+      <button class="button button-positive button-block " ng-click="log_in()">Lets Go!</button>
+      <a menu-close="" href="#/app/accounts/new" class="button button-positive button-clear button-block ">Or create an account</a>
+      <div class="spacer" style="height: 40px;"></div>
+    </form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,65 @@
+<ion-view title="Meetup">
+  <ion-nav-buttons side="primary">
+    <button class="button button-assertive" ng-click="delete_meetup()" ng-show="editing" style="float:left">Delete Meetup</button>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="secondary">
+    <button class="button" ng-click="stop_editing()" ng-show="editing">Cancel</button>
+    <button class="button button-positive" ng-click="start_editing()" ng-show="!editing">Edit</button>
+  </ion-nav-buttons>
+
+  <ion-content padding="'true'" class="has-header">
+    <div class="list" ng-show="!editing">
+      <h3>Topic: {{meetup.topic}}</h3>
+      <p>{{meetup.description}}</p>
+
+      <div class="list card">
+        <div class="item item-divider">When and Where</div>
+        <div class="item item-body">
+          {{meetup.meeting_location}}<br>
+          {{meetup.meeting_when}}
+        </div>
+      </div>
+
+      <div class="list card">
+        <div class="item item-divider">Who will be there</div>
+        <div class="item item-body">
+          <ion-item menu-close="" class="item-thumbnail-left" ng-repeat="person in meetup.people track by $index">
+            <user-card id="{{person}}"></user-card>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+
+    <form class="list" ng-show="editing">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Topic</span>
+        <input type="text" placeholder="Meetup Topic" ng-model="meetup.topic">
+      </label>
+
+      <label class="item item-input item-floating-label" name="Description">
+        <span class="input-label">Short Description</span><textarea placeholder="Short Description" ng-model="meetup.description"> </textarea>
+      </label>
+
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Location</span>
+        <input type="text" placeholder="Meetup Location" ng-model="meetup.meeting_location">
+      </label>
+
+      <label class="item item-input item-floating-label">
+        <span class="input-label">When</span>
+        <input type="text" placeholder="Meetup When" ng-model="meetup.meeting_when">
+      </label>
+      <button class="button button-positive button-block" ng-click="update_meetup()">Update Meetup</button>
+    </form>
+  </ion-content>
+
+  <div class="bar bar-footer bar-dark" ng-show="!editing">
+    <button class="button button-clear"></button>
+    <div class="title">
+      <button class="button button-assertive" ng-click="count_me_out()" ng-show="joined_meetup()">Count me out</button>
+      <button class="button button-balanced" ng-click="count_me_in()" ng-show="!joined_meetup()">Count me In</button>
+    </div>
+    <button class="button button-clear"></button>
+  </div>
+</ion-view>

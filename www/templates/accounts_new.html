@@ -1,0 +1,23 @@
+<ion-view title="New Account">
+  <ion-content padding="'false'" class="has-header">
+    <form class="list ng-pristine ng-valid">
+      <ion-list class="disable-user-behavior">
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">Name</span>
+            <input type="text" placeholder="" ng-model="user.name">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Email Address</span>
+            <input type="text" placeholder="" ng-model="user.email">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Password</span>
+            <input type="password" placeholder="" ng-model="user.password">
+          </label>
+        </div>
+      </ion-list>
+      <button class="button button-positive button-block " ng-click="createUser()">Sign up</button>
+    </form>
+  </ion-content>
+</ion-view>

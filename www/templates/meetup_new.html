@@ -1,0 +1,29 @@
+<ion-view title="Create Meetup">
+  <ion-nav-buttons side="secondary">
+    <a class="button" ng-href="#/app/projects/{{project.$id}}" ng-click="stop_editing()" >Cancel</a>
+  </ion-nav-buttons>
+  <ion-content padding="'true'" class="has-header">
+    <form class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Topic</span>
+        <input type="text" placeholder="Meetup Topic" ng-model="meetup.topic">
+      </label>
+
+      <label class="item item-input item-stacked-label" name="Description">
+        <span class="input-label">Short Description</span><textarea placeholder="Short Description" ng-model="meetup.description"> </textarea>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Location</span>
+        <input type="text" placeholder="Meetup Location" ng-model="meetup.meeting_location">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">When</span>
+        <input type="text" placeholder="Meetup When" ng-model="meetup.meeting_when">
+      </label>
+    </form>
+    <a class="button button-positive button-block" ng-click="create_meetup()">Create</a>
+    <form class="list"></form>
+  </ion-content>
+</ion-view>

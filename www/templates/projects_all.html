@@ -1,0 +1,23 @@
+<ion-view title="All Projects">
+  <ion-nav-buttons side="secondary">
+    <a class="button button-positive" href="#/app/projects/new" ng-show="is_logged_in()">Create</a>
+  </ion-nav-buttons>
+
+  <ion-content padding="'false'" class="has-header">
+
+    <form class="list">
+      <label class="item item-input" name="Search">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" ng-model="searchText" placeholder="Search">
+      </label>
+
+      <ion-item menu-close="" ng-click="load_project(project.$id);" class="item-thumbnail-left" ng-repeat="project in all_projects| filter:searchText">
+        <img>
+        <h2>{{project.name}}</h2>
+        <p>{{project.description}}</p>
+        <span class="item-note" ng-if="is_logged_in &amp;&amp; already_joined(project.people)">Joined</span>
+      </ion-item>
+    </form>
+
+  </ion-content>
+</ion-view>

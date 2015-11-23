@@ -1,0 +1,25 @@
+<ion-view title="Projects">
+  <ion-nav-buttons side="secondary">
+    <a class="button button-positive" href="#/app/projects/new" ng-show="is_logged_in()">Create</a>
+  </ion-nav-buttons>
+
+  <ion-content padding="'false'" class="has-header">
+    <div class="list card">
+      <div class="item item-divider">Your Projects</div>
+
+      <div class="item item-body" ng-show="projects.length == 0">
+        Nothing.
+      </div>
+
+      <div class="item item-body" ng-show="projects.length > 0">
+        <ion-item ng-click="load_project(project.$id)" menu-close="" class="item-thumbnail-left" ng-repeat="project in projects">
+          <img>
+          <h2>{{project.name}}</h2>
+          <p>{{project.description}}</p>
+        </ion-item>
+      </div>
+    </div>
+
+    <a class="button button-balanced button-block " ng-href="#/app/projects/all">Find a Project</a>
+  </ion-content>
+</ion-view>
