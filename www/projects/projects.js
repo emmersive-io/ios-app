@@ -144,6 +144,8 @@ function($scope, $stateParams, $location, Project, Projects, Ref, ProjectMeetups
     $scope.loaded = true;
   });
 
+  $scope.tab = 'activity';
+
   $scope.meetup = {};
 
   $scope.delete_project = function() {

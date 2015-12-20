@@ -9128,7 +9128,7 @@ label {
   margin-top: 15px !important; }
 
 .scroll-content {
-  padding: 20px; }
+  padding: 15px; }
 
 .login-page .logo {
   width: 80%;
@@ -9211,6 +9211,9 @@ label {
 
 .project-page .item {
   border: none !important; }
+
+.project-page h1 {
+  font-weight: 300 !important; }
 
 .project h2 {
   font-weight: 200 !important;

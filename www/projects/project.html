@@ -8,14 +8,26 @@
   <ion-content padding="'true'" class="has-header project-page">
     <h1>{{project.name}}</h1>
     <p>{{project.description}}</p>
+
     <div class="button-bar">
-      <a class="button active">Activity</a>
-      <a class="button">Tasks</a>
-      <a class="button">People</a>
+      <a class="button" ng-class="{active: tab=='activity'}" ng-click="tab='activity'">Activity</a>
+      <a class="button" ng-class="{active: tab=='tasks'}" ng-click="tab='tasks'">Tasks</a>
+      <a class="button" ng-class="{active: tab=='people'}" ng-click="tab='people'">People</a>
     </div>
-    <ion-item menu-close="" class="item-thumbnail-left" ng-repeat="person in project.people">
+
+    <ion-item ng-show="tab=='activity'">
+      <h1>Activity</h1>
+    </ion-item>
+
+    <ion-item ng-show="tab=='tasks'">
+      <h1>Tasks</h1>
+    </ion-item>
+
+    <ion-item menu-close="" class="item-thumbnail-left" ng-repeat="person in project.people" ng-show="tab=='people'">
       <user-card id="{{person}}" class="item-avatar"></user-card>
     </ion-item>
+
+
   </ion-content>
 
   <div class="bar bar-footer bar-dark">
