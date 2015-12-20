@@ -1,12 +1,26 @@
-<ion-view title="New Account">
-  <ion-content padding="'false'" class="has-header">
+<ion-view title="Register">
+  <ion-content padding="'false'" class="has-header register-page">
     <form class="list ng-pristine ng-valid">
       <ion-list class="disable-user-behavior">
         <div class="list">
+
+          <div class="row responsive-sm">
+            <div class="col col-center">
+              <img src="/images/profile.png" class="profile-mug"><br>
+              <a href="">Add a photo</a>
+            </div>
+          </div>
+
           <label class="item item-input">
             <span class="input-label">Name</span>
             <input type="text" placeholder="" ng-model="user.name">
           </label>
+
+          <div class="section-header">
+            <label>Login</label>
+            <div class="section-border"></div>
+          </div>
+
           <label class="item item-input">
             <span class="input-label">Email Address</span>
             <input type="text" placeholder="" ng-model="user.email">
@@ -15,9 +29,13 @@
             <span class="input-label">Password</span>
             <input type="password" placeholder="" ng-model="user.password">
           </label>
+          <label class="item item-input">
+            <span class="input-label">Confirm Password</span>
+            <input type="password" placeholder="" ng-model="user.confirm_password">
+          </label>
         </div>
       </ion-list>
-      <button class="button button-positive button-block " ng-click="createUser()">Sign up</button>
+      <button class="button button-positive button-block " ng-click="createUser()">Register</button>
     </form>
   </ion-content>
 </ion-view>

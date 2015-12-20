@@ -11,12 +11,13 @@
         <input type="search" ng-model="searchText" placeholder="Search">
       </label>
 
-      <ion-item menu-close="" ng-click="load_project(project.$id);" class="item-thumbnail-left" ng-repeat="project in all_projects| filter:searchText">
-        <img>
-        <h2>{{project.name}}</h2>
-        <p>{{project.description}}</p>
-        <span class="item-note" ng-if="is_logged_in &amp;&amp; already_joined(project.people)">Joined</span>
-      </ion-item>
+      <div class="card project" ng-click="load_project(project.$id)" menu-close="" ng-repeat="project in all_projects| filter:searchText">
+        <div style="height:100px;width:100%;background:#e0e0e0"></div>
+        <div class="item item-text-wrap">
+          <h2>{{project.name}}</h2>
+          {{project.description}}
+        </div>
+      </div>
     </form>
 
   </ion-content>
