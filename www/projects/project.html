@@ -6,6 +6,7 @@
   </ion-nav-buttons>
 
   <ion-content padding="'true'" class="has-header project-page">
+    <img src="/images/default.png" style="width:100%">
     <h1>{{project.name}}</h1>
     <p>{{project.description}}</p>
 
@@ -26,7 +27,7 @@
         </label>
       </form>
 
-      <div ng-repeat="task in project.tasks">
+      <div ng-repeat="task in project.tasks" class="tasks">
         <ion-checkbox class="checkbox-emmersive" ng-model="task.status" ng-true-value="'open'" ng-false-value="'closed'">
           <principal id="{{task.created_by}}"></principal><br>
           {{task.description}}
