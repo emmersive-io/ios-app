@@ -22,7 +22,8 @@
           <input type="text" placeholder="What are you doing?" ng-model="activity.description">
         </label>
       </form>
-      <div class="tasks" ng-repeat="activity in project.activities">
+
+      <div class="tasks" ng-repeat="activity in project.activities | orderObjectBy:'created_at':true">
         <ion-item menu-close="" class="item-thumbnail-left">
           <activity-card id="{{activity.created_by}}" activity="activity" class="item-avatar"></activity-card>
         </ion-item>
@@ -36,7 +37,7 @@
         </label>
       </form>
 
-      <div ng-repeat="task in project.tasks" class="tasks">
+      <div ng-repeat="task in project.tasks | orderObjectBy:'created_at':true" class="tasks">
         <ion-checkbox class="checkbox-emmersive" ng-change="testit(task)" ng-model="task.status" ng-true-value="'open'" ng-false-value="'closed'">
           <principal id="{{task.created_by}}"></principal><br>
           {{task.description}}
