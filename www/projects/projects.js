@@ -179,6 +179,9 @@ function($scope, $stateParams, $location, Project, Projects, Ref, ProjectMeetups
     $scope.project.people = ($scope.project.people) ? $scope.project.people : [];
     $scope.project.people.push(Ref.getAuth().uid);
     $scope.project.$save();
+
+    $scope.activity.description = "Joined the project"
+    $scope.create_activity();
   };
 
   $scope.joined = function() {

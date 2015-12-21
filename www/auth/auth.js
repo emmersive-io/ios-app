@@ -155,7 +155,7 @@ function($scope, $firebaseAuth, AuthService, SessionService, $location, Ref) {
     restrict: 'E',
     scope: {
       id: '@',
-      activity: '@'
+      activity: '=activity'
     },
     replace: true,
     link: function($scope, $element, $attrs) {

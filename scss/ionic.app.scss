@@ -173,3 +173,11 @@ label { margin-bottom:15px!important;}
 .checkbox-emmersive input:checked + .checkbox-icon:before {
   background: #DA392A!important;
   border-color: #DA392A!important; }
+
+.activity_card {
+  .time_in_words {
+    font-color: #787878;
+    font-size:14px;
+  }
+  a { color: #DA392A; font-weight: bold; text-decoration: none}
+}
