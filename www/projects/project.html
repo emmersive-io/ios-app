@@ -37,7 +37,7 @@
       </form>
 
       <div ng-repeat="task in project.tasks" class="tasks">
-        <ion-checkbox class="checkbox-emmersive" ng-model="task.status" ng-true-value="'open'" ng-false-value="'closed'">
+        <ion-checkbox class="checkbox-emmersive" ng-change="testit(task)" ng-model="task.status" ng-true-value="'open'" ng-false-value="'closed'">
           <principal id="{{task.created_by}}"></principal><br>
           {{task.description}}
         </ion-checkbox>

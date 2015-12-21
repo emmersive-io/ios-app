@@ -163,6 +163,10 @@ function($scope, $stateParams, $location, Project, Projects, Ref, ProjectMeetups
   $scope.task = {};
   $scope.activity = {};
 
+  $scope.testit = function(task){
+    $scope.project.$save();
+  }
+
   $scope.delete_project = function() {
     Project($scope.project.$id).$remove().then(function(ref) {
       $location.path('/app/projects');
