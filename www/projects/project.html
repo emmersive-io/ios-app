@@ -35,20 +35,18 @@
       </div>
     </ion-item>
 
-    <ion-item menu-close="" class="item-thumbnail-left" ng-repeat="person in project.people" ng-show="tab=='people'">
-      <user-card id="{{person}}" class="item-avatar"></user-card>
-    </ion-item>
-
+    <div ng-show="tab=='people'">
+      <div class="col-center">
+        <a ng-show="is_logged_in() &amp;&amp; joined()" ng-click="leave_project()">Leave This Project</a>
+        <a ng-show="is_logged_in() &amp;&amp; !joined()" ng-click="join_project()">Join This Project</a>
+        <a href="#/app/login" ng-show="!is_logged_in()">Login to Join Project</a>
+      </div>
+      <ion-item menu-close="" class="item-thumbnail-left" ng-repeat="person in project.people">
+        <user-card id="{{person}}" class="item-avatar"></user-card>
+      </ion-item>
+    </div>
 
   </ion-content>
 
-  <div class="bar bar-footer bar-dark">
-    <button class="button button-clear"></button>
-    <div class="title">
-      <button class="button button-assertive" ng-show="is_logged_in() &amp;&amp; joined()" ng-click="leave_project()">Leave This</button>
-      <button class="button button-balanced" ng-show="is_logged_in() &amp;&amp; !joined()" ng-click="join_project()">Join This</button>
-      <a class="button button-balanced" href="#/app/login" ng-show="!is_logged_in()">Login to Join</a>
-    </div>
-    <button class="button button-clear"></button>
-  </div>
+
 </ion-view>
