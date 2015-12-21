@@ -149,6 +149,23 @@ function($scope, $firebaseAuth, AuthService, SessionService, $location, Ref) {
   }
 })
 
+.directive('activityCard', function(UserLookup) {
+  return {
+    templateUrl: 'projects/activity_card.html',
+    restrict: 'E',
+    scope: {
+      id: '@',
+      activity: '@'
+    },
+    replace: true,
+    link: function($scope, $element, $attrs) {
+      UserLookup($attrs.id).$loaded(function(user) {
+        $scope.user = user;
+      });
+    }
+  };
+})
+
 .directive('userCard', function(UserLookup) {
   return {
     templateUrl: 'auth/user_card.html',
@@ -163,5 +180,4 @@ function($scope, $firebaseAuth, AuthService, SessionService, $location, Ref) {
       });
     }
   };
-})
-;
+});

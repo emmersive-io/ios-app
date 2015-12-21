@@ -16,8 +16,15 @@
       <a class="button" ng-class="{active: tab=='people'}" ng-click="tab='people'">People</a>
     </div>
 
-    <ion-item ng-show="tab=='activity'">
-      <h1>Activity</h1>
+    <ion-item ng-show="tab=='activity'" class="tab-content">
+      <form class="list" ng-submit="create_activity()">
+        <label class="item item-input item-stacked-label">
+          <input type="text" placeholder="What are you doing?" ng-model="activity.description">
+        </label>
+      </form>
+      <ion-item menu-close="" class="item-thumbnail-left" ng-repeat="activity in project.activities">
+        <activity-card id="{{activity.created_by}}" activity="{{activity}}" class="item-avatar"></activity-card>
+      </ion-item>
     </ion-item>
 
     <ion-item ng-show="tab=='tasks'" class="tab-content">
