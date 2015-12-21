@@ -173,6 +173,9 @@ function($scope, $stateParams, $location, Project, Projects, Ref, ProjectMeetups
     index = $scope.project.people.indexOf(Ref.getAuth().uid);
     $scope.project.people.splice(index, 1);
     $scope.project.$save();
+
+    $scope.activity.description = "Left the project"
+    $scope.create_activity();
   };
 
   $scope.join_project = function() {
@@ -219,7 +222,10 @@ function($scope, $stateParams, $location, Project, Projects, Ref, ProjectMeetups
     $scope.task.created_by = Ref.getAuth().uid;
     $scope.task.status = "open";
     $scope.task.created_at = Firebase.ServerValue.TIMESTAMP;
-    ProjectTasks($scope.project.$id).$add($scope.task).then(function(){
+    ProjectTasks($scope.project.$id).$add($scope.task).then(function(ref){
+      $scope.activity.description = "Created a task";
+      $scope.activity.task_id = ref.key();
+      $scope.create_activity();
       $scope.task = {}
     })
   }

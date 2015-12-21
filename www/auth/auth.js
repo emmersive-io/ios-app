@@ -1,4 +1,5 @@
 angular.module('emmersive.auth', ['ionic', 'firebase'])
+
 // Configuration/Routes
 .config(function($stateProvider) {
   $stateProvider
@@ -129,8 +130,41 @@ function($scope, $firebaseAuth, AuthService, SessionService, $location, Ref) {
   };
 })
 
-.controller('ProfileController', function($scope, Ref) {
-  $scope.user = Ref.getAuth();
+.controller('ProfileController', function($scope, Ref, UserLookup) {
+  user = Ref.getAuth();
+  UserLookup(user.uid).$loaded(function(user) {
+    $scope.user = user;
+      console.log(user);
+  });
+
+  $scope.change_password = function(){
+    Ref.changePassword({
+      email: $scope.user.email,
+      oldPassword: $scope.user.existing_password,
+      newPassword: $scope.user.new_password
+    }, function(error) {
+        if (error) {
+          switch (error.code) {
+            case "INVALID_PASSWORD":
+              console.log("The specified user account password is incorrect.");
+              break;
+            case "INVALID_USER":
+              console.log("The specified user account does not exist.");
+              break;
+            default:
+              console.log("Error changing password:", error);
+          }
+        } else {
+          alert("User password changed successfully!");
+        }
+      });
+  }
+
+  $scope.update_profile = function(){
+    $scope.user.$save()
+    alert("updated username");
+  }
+
 })
 
 .directive('principal', function(UserLookup){
