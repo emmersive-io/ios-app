@@ -25,7 +25,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .item-thumbnail-left > span > img:first-child {
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 1px;
     max-width: 80px;
     max-height: 80px;
     width: 100%;
@@ -125,6 +125,7 @@ label { margin-bottom:15px!important;}
     border: 1px solid #ddd!important;
     line-height:30px!important;
     min-height: 30px!important;
+    margin-bottom:20px;
   }
   .button-bar a:first-child { margin-left:0px; }
   .button-bar a:last-child { margin-right:0px; }
@@ -133,8 +134,42 @@ label { margin-bottom:15px!important;}
     border:none!important;
   }
   h1 { font-weight: 300!important;}
+  .item-input {
+    padding: 3px 0 4px 16px!important;
+  }
+  .item-thumbnail-left {
+    padding-left: 75px!important;
+    padding-top: 2px!important;
+    height: 80px!important;
+    min-height: 80px!important;
+  }
 }
+
+.tab-content {
+  padding:2px!important;
+  .item { border:1px solid #e0e0e0!important;border-radius: 5px;}
+  .tasks {
+    .item {
+      border: 0px!important;
+      padding: 2px!important;
+      label { padding:5px!important; }
+      .item-content { padding-left:60px!important}
+    }
+    .item-checkbox .checkbox { left: 0px!important;}
+  }
+}
+
 
 .project {
   h2 { font-weight: 200!important;font-size:24px!important;margin-bottom:10px!important;}
 }
+
+
+.checkbox-emmersive input:before,
+.checkbox-emmersive .checkbox-icon:before {
+  border-color: #DA392A!important; }
+
+.checkbox-emmersive input:checked:before,
+.checkbox-emmersive input:checked + .checkbox-icon:before {
+  background: #DA392A!important;
+  border-color: #DA392A!important; }

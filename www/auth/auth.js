@@ -133,6 +133,22 @@ function($scope, $firebaseAuth, AuthService, SessionService, $location, Ref) {
   $scope.user = Ref.getAuth();
 })
 
+.directive('principal', function(UserLookup){
+  return {
+    template: "<span>{{user.name}}</span>",
+    restrict: 'E',
+    scope: {
+      id: '@'
+    },
+    replace: true,
+    link: function($scope, $element, $attrs) {
+      UserLookup($attrs.id).$loaded(function(user) {
+        $scope.user = user;
+      });
+    }
+  }
+})
+
 .directive('userCard', function(UserLookup) {
   return {
     templateUrl: 'auth/user_card.html',

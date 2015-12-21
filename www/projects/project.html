@@ -19,8 +19,19 @@
       <h1>Activity</h1>
     </ion-item>
 
-    <ion-item ng-show="tab=='tasks'">
-      <h1>Tasks</h1>
+    <ion-item ng-show="tab=='tasks'" class="tab-content">
+      <form class="list" ng-submit="create_task()">
+        <label class="item item-input item-stacked-label">
+          <input type="text" placeholder="Add a task" ng-model="task.description">
+        </label>
+      </form>
+
+      <div ng-repeat="task in project.tasks">
+        <ion-checkbox class="checkbox-emmersive" ng-model="task.status" ng-true-value="'open'" ng-false-value="'closed'">
+          <principal id="{{task.created_by}}"></principal><br>
+          {{task.description}}
+        </ion-checkbox>
+      </div>
     </ion-item>
 
     <ion-item menu-close="" class="item-thumbnail-left" ng-repeat="person in project.people" ng-show="tab=='people'">

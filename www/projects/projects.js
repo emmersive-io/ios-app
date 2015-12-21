@@ -82,6 +82,13 @@ angular.module('emmersive.projects', ['ionic', 'firebase', 'emmersive.projects.m
    return $firebaseArray(Ref.child('projects'));
 })
 
+.factory('ProjectTasks', function($firebaseArray, Ref){
+  return function(id) {
+    return $firebaseArray(Ref.child('projects').child(id).child('tasks'));
+  };
+})
+
+
 // Controllers/Directives
 .controller('ProjectsController', function($scope, Projects, Project, $location, Ref) {
   $scope.projects = [];
@@ -137,7 +144,7 @@ angular.module('emmersive.projects', ['ionic', 'firebase', 'emmersive.projects.m
 
 /* Project Controller */
 .controller('ProjectController',
-function($scope, $stateParams, $location, Project, Projects, Ref, ProjectMeetups) {
+function($scope, $stateParams, $location, Project, Projects, Ref, ProjectMeetups, ProjectTasks) {
   $scope.loaded = false;
   Project($stateParams.id).$loaded(function(project) {
     $scope.project = project;
@@ -147,6 +154,7 @@ function($scope, $stateParams, $location, Project, Projects, Ref, ProjectMeetups
   $scope.tab = 'activity';
 
   $scope.meetup = {};
+  $scope.task = {};
 
   $scope.delete_project = function() {
     Project($scope.project.$id).$remove().then(function(ref) {
@@ -186,6 +194,16 @@ function($scope, $stateParams, $location, Project, Projects, Ref, ProjectMeetups
   $scope.load_meetup = function(key) {
     $location.path("/app/projects/" + $scope.project.$id + "/meetups/" + key);
   };
+
+  $scope.create_task = function(){
+    $scope.task.project_id = $scope.project.$id;
+    $scope.task.created_by = Ref.getAuth().uid;
+    $scope.task.status = "open";
+    $scope.task.created_at = Firebase.ServerValue.TIMESTAMP;
+    ProjectTasks($scope.project.$id).$add($scope.task).then(function(){
+      $scope.task = {}
+    })
+  }
 
   $scope.create_meetup = function() {
     $scope.meetup.project_id = $scope.project.$id;
