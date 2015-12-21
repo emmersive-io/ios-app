@@ -9267,3 +9267,9 @@ label {
   color: white !important;
   font-size: 14px !important;
   margin-top: 10px !important; }
+
+.projects_page .no_projects {
+  margin-top: 12px;
+  color: #939393 !important;
+  font-weight: bold !important;
+  line-height: 1.75em; }
