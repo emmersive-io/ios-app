@@ -1,10 +1,4 @@
 <ion-view title="Edit Project">
-  <ion-nav-buttons side="primary">
-    <button class="button button-assertive" ng-click="delete_project()" style="float:left">Delete Project</button>
-  </ion-nav-buttons>
-  <ion-nav-buttons side="secondary">
-    <a class="button" href="#/app/projects/{{project.$id}}">Cancel</a>
-  </ion-nav-buttons>
   <ion-content padding="'true'" class="has-header">
     <form class="list">
       <label class="item item-input item-stacked-label">
@@ -23,5 +17,7 @@
       <ion-toggle toggle-class="" ng-model="project.is_private">Private</ion-toggle>
     </form>
     <button class="button button-positive button-block" ng-click="update_project()">Edit Project</button>
+    <br><br>
+    <a ng-click="delete_project()" style="float:left">Delete Project</a>
   </ion-content>
 </ion-view>

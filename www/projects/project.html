@@ -1,51 +1,62 @@
-<ion-view title="Project">
+<ion-view>
+  <ion-nav-title>{{project.name}}</ion-nav-title>
 
   <ion-nav-buttons side="secondary">
-    <a class="button button-positive" href="#/app/projects/{{project.$id}}/edit" ng-show="is_logged_in() &amp;&amp; joined()">Edit</a>
+    <a class="button button-positive nav-bar-links" href="#/app/projects/{{project.$id}}/edit" ng-show="is_logged_in() &amp;&amp; joined()">Edit</a>
   </ion-nav-buttons>
 
-  <ion-content padding="'true'" class="has-header">
+  <ion-content padding="'true'" class="has-header project-page">
+    <img src="images/default.png" style="width:100%">
     <h1>{{project.name}}</h1>
     <p>{{project.description}}</p>
 
-    <div class="list card">
-      <div class="item item-divider" align-title="center">
-        Meetups
-        <button ng-click="load_meetup_form()" ng-show="is_logged_in()" style="float:right">Add</button>
-      </div>
-
-      <div class="item item-body" ng-show="!project.meetups">
-        <ion-item>
-          <p>No meetups planned</p>
-        </ion-item>
-      </div>
-
-      <ion-list class="item item-body" ng-show="project.meetups">
-        <ion-item menu-close="" class="item-thumbnail-left" ng-repeat="(key, meetup) in project.meetups" ng-click="load_meetup(key)">
-          <img>
-          <h2>{{meetup.topic}}</h2>
-          <p>{{meetup.description}}</p>
-        </ion-item>
-      </ion-list>
+    <div class="button-bar">
+      <a class="button" ng-class="{active: tab=='activity'}" ng-click="tab='activity'">Activity</a>
+      <a class="button" ng-class="{active: tab=='tasks'}" ng-click="tab='tasks'">Tasks</a>
+      <a class="button" ng-class="{active: tab=='people'}" ng-click="tab='people'">People</a>
     </div>
 
-    <div class="list card">
-      <div class="item item-divider">People</div>
-      <div class="item item-body">
-        <ion-item menu-close="" class="item-thumbnail-left" ng-repeat="person in project.people">
-          <user-card id="{{person}}"></user-card>
+    <ion-item ng-show="tab=='activity'" class="tab-content">
+      <form class="list" ng-submit="create_activity()">
+        <label class="item item-input item-stacked-label">
+          <input type="text" placeholder="What are you doing?" ng-model="activity.description">
+        </label>
+      </form>
+
+      <div class="tasks" ng-repeat="activity in project.activities | orderObjectBy:'created_at':true">
+        <ion-item menu-close="" class="item-thumbnail-left">
+          <activity-card id="{{activity.created_by}}" activity="activity" class="item-avatar"></activity-card>
         </ion-item>
       </div>
+    </ion-item>
+
+    <ion-item ng-show="tab=='tasks'" class="tab-content">
+      <form class="list" ng-submit="create_task()">
+        <label class="item item-input item-stacked-label">
+          <input type="text" placeholder="Add a task" ng-model="task.description">
+        </label>
+      </form>
+
+      <div ng-repeat="task in project.tasks | orderObjectBy:'created_at':true" class="tasks">
+        <ion-checkbox class="checkbox-emmersive" ng-change="testit(task)" ng-model="task.status" ng-true-value="'open'" ng-false-value="'closed'">
+          <a href="/#/app/profile/{{task.created_by}}" style="font-weight:bold;text-decoration:none"><principal id="{{task.created_by}}"></principal></a><br>
+          {{task.description}}
+        </ion-checkbox>
+      </div>
+    </ion-item>
+
+    <div ng-show="tab=='people'">
+      <div class="col-center">
+        <a ng-show="is_logged_in() &amp;&amp; joined()" ng-click="leave_project()">Leave This Project</a>
+        <a ng-show="is_logged_in() &amp;&amp; !joined()" ng-click="join_project()">Join This Project</a>
+        <a href="#/app/login" ng-show="!is_logged_in()">Login to Join Project</a>
+      </div>
+      <ion-item menu-close="" class="item-thumbnail-left" ng-repeat="person in project.people">
+        <user-card id="{{person}}" class="item-avatar"></user-card>
+      </ion-item>
     </div>
+
   </ion-content>
 
-  <div class="bar bar-footer bar-dark">
-    <button class="button button-clear"></button>
-    <div class="title">
-      <button class="button button-assertive" ng-show="is_logged_in() &amp;&amp; joined()" ng-click="leave_project()">Leave This</button>
-      <button class="button button-balanced" ng-show="is_logged_in() &amp;&amp; !joined()" ng-click="join_project()">Join This</button>
-      <a class="button button-balanced" href="#/app/login" ng-show="!is_logged_in()">Login to Join</a>
-    </div>
-    <button class="button button-clear"></button>
-  </div>
+
 </ion-view>

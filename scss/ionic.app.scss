@@ -25,7 +25,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .item-thumbnail-left > span > img:first-child {
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 1px;
     max-width: 80px;
     max-height: 80px;
     width: 100%;
@@ -33,3 +33,167 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 .bar-footer .title {padding-top: 4px;}
+
+.bar {
+  background: #DA392A!important;
+  color: white;
+  font-weight: bold;
+}
+
+.button {
+  background: #DA392A!important;
+  border: none!important;
+}
+
+a {
+  color: #DA392A!important;
+}
+
+.col-center {
+  text-align: center!important;
+}
+
+label { margin-bottom:15px!important;}
+
+.input-label { color: rgba(0,0,0,.35)!important}
+
+.button.button-block, .button.button-full {
+  font-size:17px!important;
+  font-weight:bold!important;
+  margin-top:15px!important
+}
+
+.scroll-content {
+  padding: 15px;
+}
+
+.login-page {
+  .logo { width:80%;max-width:500px };
+  a { padding-left: 5px; padding-right: 5px; text-decoration: none; font-weight: 500 }
+  .secondary-links {
+    color: rgba(0,0,0,0.35);
+  }
+}
+
+.register-page {
+  img.profile-mug { width:150px }
+  a { color: rgba(0,0,0,0.35)!important; text-decoration: none; font-weight: 500}
+}
+
+.header-item { padding:10px;}
+
+.bar-header { height:70px!important; }
+
+.has-header { top: 90px!important;}
+
+.platform-ios7.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
+  margin-top: 25px;
+}
+.platform-ios7.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+  height: 90px;
+}
+.platform-ios7.platform-cordova:not(.fullscreen) .has-header {
+  top: 90px;
+}
+
+.section-header {
+  color: rgba(0,0,0,0.35);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  label { background:white;padding:10px}
+  .section-border { border-top: 1px solid rgba(0,0,0,0.15);margin-top:-12px; }
+}
+
+
+.bar .button.button-clear {
+  color: #fff!important;
+}
+
+.projects_page {
+  a { color: #fff!important;}
+}
+
+.project-page {
+  .button-bar a {
+    background: #fff!important;
+    color: #DA392A!important;
+    margin:2px;
+    font-weight:bold;
+    border-radius:5px!important;
+    border: 1px solid #ddd!important;
+    line-height:30px!important;
+    min-height: 30px!important;
+    margin-bottom:20px;
+  }
+  .button-bar a:first-child { margin-left:0px; }
+  .button-bar a:last-child { margin-right:0px; }
+  .button-bar a.active { border:none!important; background: #DA392A!important; color: #fff!important;}
+  .item {
+    border:none!important;
+  }
+  h1 { font-weight: 300!important;}
+  .item-input {
+    padding: 3px 0 4px 16px!important;
+  }
+  .item-thumbnail-left {
+    padding-left: 75px!important;
+    padding-top: 2px!important;
+    height: 80px!important;
+    min-height: 80px!important;
+  }
+}
+
+.tab-content {
+  padding:2px!important;
+  .item { border:1px solid #e0e0e0!important;border-radius: 5px;}
+  .tasks {
+    .item {
+      border: 0px!important;
+      padding: 2px!important;
+      label { padding:5px!important; }
+      .item-content { padding-left:60px!important}
+    }
+    .item-checkbox .checkbox { left: 0px!important;}
+  }
+}
+
+
+.project {
+  h2 { font-weight: 200!important;font-size:24px!important;margin-bottom:10px!important;}
+}
+
+
+.checkbox-emmersive input:before,
+.checkbox-emmersive .checkbox-icon:before {
+  border-color: #DA392A!important; }
+
+.checkbox-emmersive input:checked:before,
+.checkbox-emmersive input:checked + .checkbox-icon:before {
+  background: #DA392A!important;
+  border-color: #DA392A!important; }
+
+.activity_card {
+  .time_in_words {
+    font-color: #787878;
+    font-size:14px;
+  }
+  a { color: #DA392A; font-weight: bold; text-decoration: none}
+}
+
+
+.nav-bar-links {
+  color:white!important;
+  font-size:14px!important;
+  margin-top:10px!important;
+}
+
+.projects_page {
+  .no_projects {
+    margin-top: 12px;
+    color: #939393!important;
+    font-weight: bold!important;
+    line-height: 1.75em;
+  }
+}

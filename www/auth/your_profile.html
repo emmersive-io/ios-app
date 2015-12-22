@@ -1,5 +1,61 @@
-<ion-view title="Your Profile">
-  <ion-content padding="'true'" class="has-header">
-    edit profile here for {{user.password.email}}
+<ion-view title="{{title}}">
+  <ion-content padding="'true'" class="has-header" ng-init="editing_profile=true">
+
+    <div class="list" ng-show="!isUser()">
+      <img src="images/profile.png" style="width:40%">
+      <h1>{{user.name}}</h1>
+      {{user.email}}
+    </div>
+
+    <div class="list" ng-show="isUser()">
+
+      <div ng-show="editing_profile">
+
+      <div class="row responsive-sm">
+        <div class="col col-center">
+          <img src="images/profile.png" class="profile-mug"><br>
+          <a href="">Add a photo here</a>
+        </div>
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">Name</span>
+        <input type="text" placeholder="" ng-model="user.name">
+      </label>
+
+      <div class="section-header">
+        <label>Login</label>
+        <div class="section-border"></div>
+      </div>
+
+      <label class="item item-input">
+        <span class="input-label">Email Address</span>
+        <input type="text" placeholder="" ng-model="user.email" disabled>
+      </label>
+
+      <button class="button button-positive button-block" ng-click="update_profile()">Update Profile</button>
+
+      </div>
+
+
+      <div class="col-center">
+        <a ng-click="changing_password=true;editing_profile=false" ng-show="!changing_password">Change your password</a>
+      </div>
+
+      <div ng-show="changing_password">
+        <label class="item item-input">
+          <span class="input-label">Existing Password</span>
+          <input type="password" placeholder="" ng-model="user.existing_password">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">New Password</span>
+          <input type="password" placeholder="" ng-model="user.new_password">
+        </label>
+        <button class="button button-positive button-block" ng-click="change_password()">Change Password</button>
+      </div>
+
+
+    </div>
+
   </ion-content>
 </ion-view>

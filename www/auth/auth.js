@@ -1,4 +1,5 @@
 angular.module('emmersive.auth', ['ionic', 'firebase'])
+
 // Configuration/Routes
 .config(function($stateProvider) {
   $stateProvider
@@ -129,8 +130,91 @@ function($scope, $firebaseAuth, AuthService, SessionService, $location, Ref) {
   };
 })
 
-.controller('ProfileController', function($scope, Ref) {
-  $scope.user = Ref.getAuth();
+.controller('ProfileController', function($scope, Ref, UserLookup, $stateParams) {
+  user = Ref.getAuth();
+
+  $scope.isUser = function(){
+    return ($stateParams.id == user.uid)
+  }
+
+  if($scope.isUser()){
+    $scope.title = "Your Profile"
+    UserLookup(user.uid).$loaded(function(user) {
+      $scope.user = user;
+    });
+  } else {
+    UserLookup($stateParams.id).$loaded(function(user) {
+      $scope.user = user;
+      $scope.title = user.name;
+    });
+  }
+
+  $scope.change_password = function(){
+    if(isUser()){
+
+      Ref.changePassword({
+        email: $scope.user.email,
+        oldPassword: $scope.user.existing_password,
+        newPassword: $scope.user.new_password
+      }, function(error) {
+          if (error) {
+            switch (error.code) {
+              case "INVALID_PASSWORD":
+                console.log("The specified user account password is incorrect.");
+                break;
+              case "INVALID_USER":
+                console.log("The specified user account does not exist.");
+                break;
+              default:
+                console.log("Error changing password:", error);
+            }
+          } else {
+            alert("User password changed successfully!");
+          }
+        });
+    }
+  }
+
+  $scope.update_profile = function(){
+    if(isUser()){
+      $scope.user.$save()
+      alert("updated username");
+    }
+  }
+
+})
+
+.directive('principal', function(UserLookup){
+  return {
+    template: "<span>{{user.name}}</span>",
+    restrict: 'E',
+    scope: {
+      id: '@'
+    },
+    replace: true,
+    link: function($scope, $element, $attrs) {
+      UserLookup($attrs.id).$loaded(function(user) {
+        $scope.user = user;
+      });
+    }
+  }
+})
+
+.directive('activityCard', function(UserLookup) {
+  return {
+    templateUrl: 'projects/activity_card.html',
+    restrict: 'E',
+    scope: {
+      id: '@',
+      activity: '=activity'
+    },
+    replace: true,
+    link: function($scope, $element, $attrs) {
+      UserLookup($attrs.id).$loaded(function(user) {
+        $scope.user = user;
+      });
+    }
+  };
 })
 
 .directive('userCard', function(UserLookup) {
@@ -147,5 +231,4 @@ function($scope, $firebaseAuth, AuthService, SessionService, $location, Ref) {
       });
     }
   };
-})
-;
+});
