@@ -130,39 +130,56 @@ function($scope, $firebaseAuth, AuthService, SessionService, $location, Ref) {
   };
 })
 
-.controller('ProfileController', function($scope, Ref, UserLookup) {
+.controller('ProfileController', function($scope, Ref, UserLookup, $stateParams) {
   user = Ref.getAuth();
-  UserLookup(user.uid).$loaded(function(user) {
-    $scope.user = user;
-      console.log(user);
-  });
+
+  $scope.isUser = function(){
+    return ($stateParams.id == user.uid)
+  }
+
+  if($scope.isUser()){
+    $scope.title = "Your Profile"
+    UserLookup(user.uid).$loaded(function(user) {
+      $scope.user = user;
+    });
+  } else {
+    UserLookup($stateParams.id).$loaded(function(user) {
+      $scope.user = user;
+      $scope.title = user.name;
+    });
+  }
 
   $scope.change_password = function(){
-    Ref.changePassword({
-      email: $scope.user.email,
-      oldPassword: $scope.user.existing_password,
-      newPassword: $scope.user.new_password
-    }, function(error) {
-        if (error) {
-          switch (error.code) {
-            case "INVALID_PASSWORD":
-              console.log("The specified user account password is incorrect.");
-              break;
-            case "INVALID_USER":
-              console.log("The specified user account does not exist.");
-              break;
-            default:
-              console.log("Error changing password:", error);
+    if(isUser()){
+
+      Ref.changePassword({
+        email: $scope.user.email,
+        oldPassword: $scope.user.existing_password,
+        newPassword: $scope.user.new_password
+      }, function(error) {
+          if (error) {
+            switch (error.code) {
+              case "INVALID_PASSWORD":
+                console.log("The specified user account password is incorrect.");
+                break;
+              case "INVALID_USER":
+                console.log("The specified user account does not exist.");
+                break;
+              default:
+                console.log("Error changing password:", error);
+            }
+          } else {
+            alert("User password changed successfully!");
           }
-        } else {
-          alert("User password changed successfully!");
-        }
-      });
+        });
+    }
   }
 
   $scope.update_profile = function(){
-    $scope.user.$save()
-    alert("updated username");
+    if(isUser()){
+      $scope.user.$save()
+      alert("updated username");
+    }
   }
 
 })

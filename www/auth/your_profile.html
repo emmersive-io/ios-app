@@ -1,14 +1,20 @@
-<ion-view title="Your Profile">
+<ion-view title="{{title}}">
   <ion-content padding="'true'" class="has-header" ng-init="editing_profile=true">
 
-    <div class="list">
+    <div class="list" ng-show="!isUser()">
+      <img src="images/profile.png" style="width:40%">
+      <h1>{{user.name}}</h1>
+      {{user.email}}
+    </div>
+
+    <div class="list" ng-show="isUser()">
 
       <div ng-show="editing_profile">
 
       <div class="row responsive-sm">
         <div class="col col-center">
           <img src="images/profile.png" class="profile-mug"><br>
-          <a href="">Add a photo</a>
+          <a href="">Add a photo here</a>
         </div>
       </div>
 
