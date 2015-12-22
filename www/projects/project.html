@@ -39,7 +39,7 @@
 
       <div ng-repeat="task in project.tasks | orderObjectBy:'created_at':true" class="tasks">
         <ion-checkbox class="checkbox-emmersive" ng-change="testit(task)" ng-model="task.status" ng-true-value="'open'" ng-false-value="'closed'">
-          <principal id="{{task.created_by}}"></principal><br>
+          <a href="/#/app/profile/{{task.created_by}}" style="font-weight:bold;text-decoration:none"><principal id="{{task.created_by}}"></principal></a><br>
           {{task.description}}
         </ion-checkbox>
       </div>
