@@ -150,7 +150,7 @@ function($scope, $firebaseAuth, AuthService, SessionService, $location, Ref) {
   }
 
   $scope.change_password = function(){
-    if(isUser()){
+    if($scope.isUser()){
 
       Ref.changePassword({
         email: $scope.user.email,
@@ -176,7 +176,7 @@ function($scope, $firebaseAuth, AuthService, SessionService, $location, Ref) {
   }
 
   $scope.update_profile = function(){
-    if(isUser()){
+    if($scope.isUser()){
       $scope.user.$save()
       alert("updated username");
     }

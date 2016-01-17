@@ -1,21 +1,21 @@
 <ion-view title="Create Project">
-  <ion-content padding="'true'" class="has-header">
-    <form class="list">
-      <label class="item item-input">
-        <span class="input-label">Project Name</span>
-        <input type="text" placeholder="Project Name" ng-model="project.name">
-      </label>
-      <label class="item item-select" name="Category">
-        <span class="input-label">Category</span>
-        <select name="category" ng-model="project.category">
-          <option ng-repeat="category in categories track by $index" value="{{category}}">{{category}}</option>
-        </select>
-      </label>
-      <label class="item item-input" name="Description">
-        <span class="input-label">Short Description</span><textarea placeholder="Short Description" ng-model="project.description"> </textarea>
-      </label>
-      <ion-toggle toggle-class="" ng-model="project.is_private">Private</ion-toggle>
-    </form>
-    <button class="button button-positive button-block" ng-click="save_project()">Create Project</button>
-  </ion-content>
+    <ion-content padding="'true'" class="has-header">
+        <form class="list">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Project Name</span>
+                <input type="text" placeholder="Project Name" ng-model="project.name" aria-label="project name"/>
+            </label>
+            <label class="item item-input item-select" name="Category">
+                <span class="input-label">Category</span>
+                <select name="category" ng-model="project.category" aria-label="category">
+                    <option ng-repeat="category in categories track by $index" value="{{category}}">{{category}}</option>
+                </select>
+            </label>
+            <label class="item item-input item-floating-label" name="Description">
+                <span class="input-label">Short Description</span><textarea placeholder="Short Description" ng-model="project.description"> </textarea>
+            </label>
+            <ion-toggle toggle-class="" ng-model="project.is_private">Private</ion-toggle>
+        </form>
+        <button class="button button-positive button-block" ng-click="save_project()">Create Project</button>
+    </ion-content>
 </ion-view>

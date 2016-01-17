@@ -1,27 +1,20 @@
 <ion-view title="All Projects">
-  <ion-nav-buttons side="secondary">
-    <a class="button button-positive" href="#/app/projects/new" ng-show="is_logged_in()">Create</a>
-  </ion-nav-buttons>
-
-  <ion-content padding="'false'" class="has-header">
-
-    <form class="list">
-      <label class="item item-input" name="Search">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="search" ng-model="searchText" placeholder="Search">
-      </label>
-
-      <div class="card project" ng-click="load_project(project.$id)" menu-close="" ng-repeat="project in all_projects| filter:searchText">
-        <div style="height:157px;width:100%;background:#e0e0e0">
-          <img src="images/default.png" style="width:100%">
-        </div>
-
-        <div class="item item-text-wrap">
-          <h2>{{project.name}}</h2>
-          {{project.description}}
-        </div>
-      </div>
-    </form>
-
-  </ion-content>
+    <ion-nav-buttons side="secondary">
+        <a class="button button-positive" href="#/app/projects/new" ng-show="is_logged_in()">Create</a>
+    </ion-nav-buttons>
+    <ion-content padding="'false'" class="has-header">
+        <form class="list">
+            <label class="item item-input" name="Search">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" ng-model="searchText" placeholder="Search" aria-label="search">
+            </label>
+            <div class="card project" ng-click="load_project(project.$id)" menu-close="" ng-repeat="project in all_projects| filter:searchText">
+                <img class="project-image" src="images/default.png">
+                <div class="item item-text-wrap">
+                    <h2>{{project.name}}</h2>
+                    {{project.description}}
+                </div>
+            </div>
+        </form>
+    </ion-content>
 </ion-view>

@@ -1,61 +1,37 @@
 <ion-view title="{{title}}">
-  <ion-content padding="'true'" class="has-header" ng-init="editing_profile=true">
-
-    <div class="list" ng-show="!isUser()">
-      <img src="images/profile.png" style="width:40%">
-      <h1>{{user.name}}</h1>
-      {{user.email}}
-    </div>
-
-    <div class="list" ng-show="isUser()">
-
-      <div ng-show="editing_profile">
-
-      <div class="row responsive-sm">
-        <div class="col col-center">
-          <img src="images/profile.png" class="profile-mug"><br>
-          <a href="">Add a photo here</a>
+    <ion-content padding="'true'" class="has-header" ng-init="editing_profile=true">
+        <div class="profile-block col-center" ng-show="!isUser()">
+            <img src="images/profile.png" class="profile-mug"><br>
+            <h1>{{user.name}}</h1>
+            {{user.email}}
         </div>
-      </div>
-
-      <label class="item item-input">
-        <span class="input-label">Name</span>
-        <input type="text" placeholder="" ng-model="user.name">
-      </label>
-
-      <div class="section-header">
-        <label>Login</label>
-        <div class="section-border"></div>
-      </div>
-
-      <label class="item item-input">
-        <span class="input-label">Email Address</span>
-        <input type="text" placeholder="" ng-model="user.email" disabled>
-      </label>
-
-      <button class="button button-positive button-block" ng-click="update_profile()">Update Profile</button>
-
-      </div>
-
-
-      <div class="col-center">
-        <a ng-click="changing_password=true;editing_profile=false" ng-show="!changing_password">Change your password</a>
-      </div>
-
-      <div ng-show="changing_password">
-        <label class="item item-input">
-          <span class="input-label">Existing Password</span>
-          <input type="password" placeholder="" ng-model="user.existing_password">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">New Password</span>
-          <input type="password" placeholder="" ng-model="user.new_password">
-        </label>
-        <button class="button button-positive button-block" ng-click="change_password()">Change Password</button>
-      </div>
-
-
-    </div>
-
-  </ion-content>
+        <div class="list" ng-show="isUser()">
+            <div ng-show="editing_profile">
+                <div class="profile-block col-center">
+                    <img src="images/profile.png" class="profile-mug"><br>
+                    <a href="">Add a photo here</a>
+                </div>
+                <label class="item item-input">
+                    <input type="text" placeholder="Name" aria-label="name" autocomplete="name" ng-model="user.name"/>
+                </label>
+                <div class="section-header col-center"><span>Login</span></div>
+                <label class="item item-input">
+                    <input type="email" placeholder="Email" aria-label="email" autocomplete="email" ng-model="user.email" disabled/>
+                </label>
+                <button class="button button-full" ng-click="update_profile()">Update Profile</button>
+            </div>
+            <div class="col-center">
+                <a ng-click="changing_password=true;editing_profile=false" ng-show="!changing_password">Change your password</a>
+            </div>
+            <div ng-show="changing_password">
+                <label class="item item-input">
+                    <input type="password" placeholder="Existing Password" aria-label="Existing password" autocomplete="current-password" ng-model="user.existing_password"/>
+                </label>
+                <label class="item item-input">
+                    <input type="password" placeholder="New Password" aria-label="New password" autocomplete="new-password" ng-model="user.new_password"/>
+                </label>
+                <button class="button button-full" ng-click="change_password()">Change Password</button>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>
